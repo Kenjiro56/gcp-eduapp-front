@@ -2,8 +2,10 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const Home = () => {
+  const router = useRouter();
   return (
     <div className="w-full flex justify-center bg-gray-100 min-h-screen">
       <div className="bg-white w-full max-w-[768px] rounded-lg p-6 shadow-md">
@@ -18,7 +20,9 @@ const Home = () => {
           />
           <div className="flex-1 ">
             <h1 className="text-5xl font-bold text-black">ワンダー</h1>
-            <button className="mt-3 w-full bg-black text-white py-2 rounded-md text-center">
+            <button className="mt-3 w-full bg-black text-white py-2 rounded-md text-center"
+              onClick={() => router.push('/lesson')}
+            >
               今日の問題を解く
             </button>
             <div className="mt-2 text-center">
