@@ -26,7 +26,9 @@ const Home = () => {
               今日の問題を解く
             </button>
             <div className="mt-2 text-center">
-              <button className="w-full px-4 py-1 bg-indigo-200 text-indigo-800 text-sm rounded-md">
+              <button className="w-full px-4 py-1 bg-indigo-200 text-indigo-800 text-sm rounded-md"
+                onClick={() => router.push('/avator')}
+              >
                 アバター着せ替え
               </button>
             </div>
