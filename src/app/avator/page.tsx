@@ -41,7 +41,7 @@ export default function AvatarSelectPage() {
 
         {/* 選択肢一覧：中央寄せの横スクロール */}
         <div className="w-full overflow-x-auto">
-          <div className="flex justify-center space-x-8 px-4 pb-4 w-max mx-auto">
+          <div className="flex justify-center space-x-8 px-4 pb-4 w-max mx-auto pt-8">
             {avatarItems.map((item, index) => (
               <button
                 key={index}
