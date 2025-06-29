@@ -66,12 +66,12 @@ const Home = () => {
     },
   ]
 
-  const subjectColorMap: { [key: string]: string } = {
-    国語: 'border-red-300',
-    数学: 'border-indigo-300',
-    理科: 'border-green-300',
-    社会: 'border-yellow-300',
-    英語: 'border-purple-300',
+  const subjectColorMap: { [subject: string]: string } = {
+    国語: 'red-300',
+    数学: 'indigo-300',
+    理科: 'green-300',
+    社会: 'yellow-300',
+    英語: 'purple-300',
   }
   const currentUser = dummyUserData[0]; // 仮のユーザーデータを使用
   return (
@@ -119,26 +119,12 @@ const Home = () => {
 
         {/* 教科バッジ */}
         <div className="mt-8 grid grid-cols-5 gap-4 text-center">
-          <div>
-            <div className="w-16 h-16 mx-auto rounded-full bg-red-300" />
-            <p className="mt-2 text-lg text-black">国語</p>
-          </div>
-          <div>
-            <div className="w-16 h-16 mx-auto rounded-full bg-indigo-300" />
-            <p className="mt-2 text-lg text-black">数学</p>
-          </div>
-          <div>
-            <div className="w-16 h-16 mx-auto rounded-full bg-green-300" />
-            <p className="mt-2 text-lg text-black">理科</p>
-          </div>
-          <div>
-            <div className="w-16 h-16 mx-auto rounded-full bg-yellow-300" />
-            <p className="mt-2 text-lg text-black">社会</p>
-          </div>
-          <div>
-            <div className="w-16 h-16 mx-auto rounded-full bg-purple-300" />
-            <p className="mt-2 text-lg text-black">英語</p>
-          </div>
+          {Object.entries(subjectColorMap).map(([subject, color]) => (
+            <div key={subject}>
+              <div className={`w-16 h-16 mx-auto rounded-full bg-${color}`} />
+              <p className="mt-2 text-lg text-black">{subject}</p>
+            </div>
+          ))}
         </div>
 
         {/* 最近学習したもの */}
@@ -146,12 +132,10 @@ const Home = () => {
           <h2 className="text-lg font-bold mb-2 text-black">最近学習したもの</h2>
           <div className="grid grid-cols-2 gap-4">
             {dummyLessonData.slice(-6).map((lesson) => (
-              <div
-                key={lesson.id}
-                className={`border-2 p-4 rounded-md text-sm text-black ${
-                  subjectColorMap[lesson.subject] ?? 'border-gray-300'
-                }`}
-              >
+          <div
+            key={lesson.id}
+            className={`border-2 p-4 rounded-md text-sm text-black border-${subjectColorMap[lesson.subject] ?? 'gray-300'}`}
+          >
                 <div className="font-semibold">{lesson.title}</div>
                 <div className="text-xs text-gray-500 mt-1">
                   科目: {lesson.subject} ／ 難易度: {lesson.difficulty}
