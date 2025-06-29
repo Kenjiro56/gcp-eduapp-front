@@ -73,6 +73,25 @@ const Home = () => {
     社会: 'yellow-300',
     英語: 'purple-300',
   }
+
+  const subjectsIconMap = [
+    { name: '国語', color: 'red-300', icon: <text x="50%" y="50%" textAnchor="middle" dominantBaseline="central" fontSize="20" fill="white">文</text> },
+    { name: '数学', color: 'indigo-300', icon: <text x="50%" y="50%" textAnchor="middle" dominantBaseline="central" fontSize="24" fill="white">∑</text> },
+    { name: '理科', color: 'green-300', icon: <path d="M24 16h16v4l-4 8v10a8 8 0 1 1 -8 0V28l-4 -8v-4z" fill="white" /> },
+    {
+      name: '社会',
+      color: 'yellow-300',
+      icon: (
+        <>
+          <circle cx="32" cy="32" r="16" stroke="white" strokeWidth="2" fill="none" />
+          <path d="M16,32 H48 M32,16 V48 M22,22 A16,16 0 0,0 42,42" stroke="white" strokeWidth="2" fill="none" />
+        </>
+      ),
+    },
+    { name: '英語', color: 'purple-300', icon: <text x="50%" y="50%" textAnchor="middle" dominantBaseline="central" fontSize="24" fill="white">A</text> },
+  ]
+
+
   const currentUser = dummyUserData[0]; // 仮のユーザーデータを使用
   return (
     <div className="w-full flex justify-center bg-gray-100 min-h-screen">
@@ -119,10 +138,12 @@ const Home = () => {
 
         {/* 教科バッジ */}
         <div className="mt-8 grid grid-cols-5 gap-4 text-center">
-          {Object.entries(subjectColorMap).map(([subject, color]) => (
-            <div key={subject}>
-              <div className={`w-16 h-16 mx-auto rounded-full bg-${color}`} />
-              <p className="mt-2 text-lg text-black">{subject}</p>
+          {subjectsIconMap.map((subject, index) => (
+            <div key={index}>
+              <svg viewBox="0 0 64 64" className={`w-16 h-16 mx-auto rounded-full bg-${subject.color}`}>
+                {subject.icon}
+              </svg>
+              <p className="mt-2 text-lg text-black">{subject.name}</p>
             </div>
           ))}
         </div>
