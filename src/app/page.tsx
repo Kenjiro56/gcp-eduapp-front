@@ -95,7 +95,7 @@ const Home = () => {
   const currentUser = dummyUserData[0]; // 仮のユーザーデータを使用
   return (
     <div className="w-full flex justify-center bg-gray-100 min-h-screen">
-      <div className="bg-white w-full max-w-[768px] rounded-lg p-6 shadow-md">
+      <div className="bg-white w-full max-w-[768px] rounded-lg px-6 shadow-md">
         {/* アバターとユーザー情報 */}
         <div className="flex items-center gap-6">
           <Image
@@ -113,7 +113,9 @@ const Home = () => {
               今日の問題を解く
             </button>
             <div className="mt-2 text-center">
-              <button className="w-full px-4 py-1 bg-indigo-200 text-indigo-800 text-sm rounded-md">
+              <button className="w-full px-4 py-1 bg-indigo-200 text-indigo-800 text-sm rounded-md"
+                onClick={() => router.push('/avator')}
+              >
                 アバター着せ替え
               </button>
             </div>
