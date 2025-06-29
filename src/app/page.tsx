@@ -6,6 +6,74 @@ import { useRouter } from 'next/navigation'
 
 const Home = () => {
   const router = useRouter();
+
+  const dummyUserData = [
+    {
+    "id": 1,
+    "user_name": "test1",
+    "email": "test1@test.com",
+    "password": "test1@123"
+    },
+    {
+    "id": 2,
+    "user_name": "test2",
+    "email": "test2@test.com",
+    "password": "test2@123"
+    },
+    {
+      "id": 3,
+      "user_name": "test3",
+      "email": "test3@test.com",
+      "password": "test3@123"
+    },
+  ];
+
+  const dummyLessonData = [
+    {
+      "id": 1,
+      "title": "二次方程式の解の公式を導出せよ。",
+      "subject": "数学",
+      "difficulty": "中級",
+    },
+    {
+      "id": 2,
+      "title": "円周率が3.05よりも大きいことを証明せよ。",
+      "subject": "数学",
+      "difficulty": "上級",
+    },
+    {
+      "id": 3,
+      "title": "光の屈折率を求めよ。",
+      "subject": "理科",
+      "difficulty": "初級",
+    },
+    {      "id": 4,
+      "title": "日本の首都を答えよ。",
+      "subject": "社会",
+      "difficulty": "初級",
+    },
+    {
+      "id": 5,
+      "title": "英語の文法を説明せよ。",
+      "subject": "英語",
+      "difficulty": "中級",
+    },
+    {
+      "id": 6,
+      "title": "化学反応式を書け。",
+      "subject": "理科",
+      "difficulty": "中級",
+    },
+  ]
+
+  const subjectColorMap: { [key: string]: string } = {
+    国語: 'border-red-300',
+    数学: 'border-indigo-300',
+    理科: 'border-green-300',
+    社会: 'border-yellow-300',
+    英語: 'border-purple-300',
+  }
+  const currentUser = dummyUserData[0]; // 仮のユーザーデータを使用
   return (
     <div className="w-full flex justify-center bg-gray-100 min-h-screen">
       <div className="bg-white w-full max-w-[768px] rounded-lg p-6 shadow-md">
@@ -19,7 +87,7 @@ const Home = () => {
             className="rounded-lg"
           />
           <div className="flex-1 ">
-            <h1 className="text-5xl font-bold text-black">ワンダー</h1>
+            <h1 className="text-5xl font-bold text-black">{currentUser.user_name}</h1>
             <button className="mt-3 w-full bg-black text-white py-2 rounded-md text-center"
               onClick={() => router.push('/lesson')}
             >
@@ -74,15 +142,22 @@ const Home = () => {
         </div>
 
         {/* 最近学習したもの */}
-        <div className="mt-8">
+      <div className="mt-8">
           <h2 className="text-lg font-bold mb-2 text-black">最近学習したもの</h2>
           <div className="grid grid-cols-2 gap-4">
-            <div className="border border-gray-300 p-4 rounded-md text-sm text-black">
-              二次方程式の解の公式を導出せよ。
-            </div>
-            <div className="border border-gray-300 p-4 rounded-md text-sm text-black">
-              二次方程式の解の公式を導出せよ。
-            </div>
+            {dummyLessonData.slice(-6).map((lesson) => (
+              <div
+                key={lesson.id}
+                className={`border-2 p-4 rounded-md text-sm text-black ${
+                  subjectColorMap[lesson.subject] ?? 'border-gray-300'
+                }`}
+              >
+                <div className="font-semibold">{lesson.title}</div>
+                <div className="text-xs text-gray-500 mt-1">
+                  科目: {lesson.subject} ／ 難易度: {lesson.difficulty}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
